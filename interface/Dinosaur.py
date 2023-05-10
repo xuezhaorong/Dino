@@ -1,6 +1,7 @@
 import pygame
 
 times = 0
+speed = 10
 # 恐龙类
 class Dinosaur():
     def __init__(self,image_list):
@@ -8,10 +9,13 @@ class Dinosaur():
         self.rect = self.image_list[0].get_rect()
         self.rect.x = 60
         self.rect.y = 240
-    
+        
+
     def draw(self,windowSurface):
         global times
         if times == 6:
             times = 0
         windowSurface.blit(self.image_list[times],self.rect)
         times += 1
+
+    def 

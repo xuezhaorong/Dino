@@ -57,3 +57,5 @@ if __name__ == "__main__":
 
         # 时钟停留1帧
         clock.tick(120)
+
+        
