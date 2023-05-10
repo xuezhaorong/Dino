@@ -1,6 +1,6 @@
 import pygame
 import sys
-
+from interface.Background import Background
 # 全局初始化
 pygame.init()
 # 音效初始化
@@ -15,6 +15,7 @@ pygame.display.set_caption("Dino")
 icon = pygame.image.load("./material/picture/icon.png")
 pygame.display.set_icon(icon)
 # 加载背景图
+bgSurface = pygame.image.load("./material/picture/background.png")
 
 # 背景音乐
 pygame.mixer.music.load("./material/sound/背景音效2.mp3")
@@ -24,6 +25,8 @@ pygame.mixer.music.set_volume(0.4)
 # 创建时钟对象
 clock = pygame.time.Clock()
 
+# 创建背景对象
+background = Background(bgSurface)
 
 if __name__ == "__main__":
     # 开启消息循环
@@ -36,7 +39,7 @@ if __name__ == "__main__":
                 sys.exit()
 
         # 绘制背景
-        windowSurface.fill((255, 255, 255))
+        background.draw(windowSurface)
 
         # 刷新界面
         pygame.display.flip()
