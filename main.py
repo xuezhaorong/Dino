@@ -11,7 +11,7 @@ windowSurface = pygame.display.set_mode(resolution)
 #设置标题
 pygame.display.set_caption("Dino")
 #设置图标
-
+pygame.display.set_icon("./material/picture/icon.jpg")
 
 
 
