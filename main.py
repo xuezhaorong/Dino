@@ -45,7 +45,7 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            # 处理键盘事件
+            # 处理键盘事件 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and dinosaur.speed == 0:
                     # 绘制恐龙
