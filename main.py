@@ -19,7 +19,7 @@ pygame.display.set_icon(icon)
 bgSurface = pygame.image.load("./material/picture/background.png")
 #加载恐龙图
 image_list = []
-for i in range(1,6):
+for i in range(1,4):
     image = pygame.image.load(f"./material/picture/Dino{i}.png")
     image_list.append(image)
 
@@ -56,4 +56,4 @@ if __name__ == "__main__":
         pygame.display.flip()
 
         # 时钟停留1帧
-        clock.tick(120)
+        clock.tick(360)
