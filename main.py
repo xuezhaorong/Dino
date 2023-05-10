@@ -17,9 +17,9 @@ icon = pygame.image.load("./material/picture/icon.png")
 pygame.display.set_icon(icon)
 # 加载背景图
 bgSurface = pygame.image.load("./material/picture/background.png")
-#加载恐龙图
+# 加载恐龙图
 image_list = []
-for i in range(1,7):
+for i in range(1, 7):
     image = pygame.image.load(f"./material/picture/Dino{i}.png")
     image_list.append(image)
 
@@ -45,17 +45,19 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
+            # 处理键盘事件
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and dinosaur.speed == 0:
+                    # 绘制恐龙
+                    dinosaur.UP()
         # 绘制背景
         background.draw(windowSurface)
 
         # 绘制恐龙
         dinosaur.draw(windowSurface)
-
+        print(dinosaur.speed)
         # 刷新界面
         pygame.display.flip()
 
         # 时钟停留1帧
-        clock.tick(120)
-
-        
+        clock.tick(60)
