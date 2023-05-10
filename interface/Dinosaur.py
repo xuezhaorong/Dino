@@ -11,7 +11,7 @@ class Dinosaur():
     
     def draw(self,windowSurface):
         global times
-        if times == 3:
+        if times == 6:
             times = 0
         windowSurface.blit(self.image_list[times],self.rect)
         times += 1
