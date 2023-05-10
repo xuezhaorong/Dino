@@ -7,7 +7,7 @@ class Dinosaur():
         self.image_list = image_list
         self.rect = self.image_list[0].get_rect()
         self.rect.x = 60
-        self.rect.y = 200
+        self.rect.y = 240
     
     def draw(self,windowSurface):
         global times

@@ -56,4 +56,4 @@ if __name__ == "__main__":
         pygame.display.flip()
 
         # 时钟停留1帧
-        clock.tick(360)
+        clock.tick(60)
