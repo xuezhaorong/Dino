@@ -11,6 +11,7 @@ class Background():
     
     def draw(self,windowSurface):
         self.rect.x -= 5
-        print(self.rect.x)
+        if self.rect.x <= -900:
+            self.rect.x = 0
         windowSurface.fill((255,255,255))
         windowSurface.blit(self.image,self.rect)
