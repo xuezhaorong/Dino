@@ -155,7 +155,7 @@ if __name__ == "__main__":
                 if event.key == pygame.K_DOWN:
                     dinosaur.Down()
             # 处理鼠标事件
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN and fail:
                 if restartInterface.rect.collidepoint(event.pos):
                     fail = False
                     restart()
