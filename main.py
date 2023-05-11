@@ -22,7 +22,6 @@ pygame.display.set_icon(icon)
 bgSurface = pygame.image.load("./material/picture/background.png")
 # 加载恐龙图
 image_list = []
-for i in range(1, 7):
 for i in range(1, 17):
     image = pygame.image.load(f"./material/picture/Dino{i}.png")
     image_list.append(image)
@@ -64,7 +63,6 @@ restartInterface = RestartInterface(restartImage)
 
 # 失败标志
 fail = False
-
 # 重开函数
 
 
@@ -72,6 +70,8 @@ def restart():
     global score, time
     score = 0
     time = currentTime
+    # 开始音乐播放
+    pygame.mixer.music.unpause()
 
 
 if __name__ == "__main__":
@@ -122,8 +122,6 @@ if __name__ == "__main__":
             currentTime += 1000
 
         if fail:
-            # 失败音效
-            failSound.play()
             # 绘制失败图片
             windowSurface.blit(failImage, (260, 100))
             # 绘制重启按钮
