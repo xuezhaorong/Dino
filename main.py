@@ -23,6 +23,7 @@ bgSurface = pygame.image.load("./material/picture/background.png")
 # 加载恐龙图
 image_list = []
 for i in range(1, 7):
+for i in range(1, 17):
     image = pygame.image.load(f"./material/picture/Dino{i}.png")
     image_list.append(image)
 # 加载失败图
