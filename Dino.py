@@ -144,7 +144,7 @@ if __name__ == "__main__":
                     # 绘制恐龙
                     dinosaur.Down()
                     # 发出音效
-                    jumpSound.play()
+                    # jumpSound.play()
                 elif event.key == pygame.K_SPACE and dinosaur.rect.y == 245 and not dinosaur.down_f:
                     # 绘制恐龙
                     dinosaur.UP()
