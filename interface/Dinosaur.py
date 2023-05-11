@@ -32,7 +32,7 @@ class Dinosaur():
                 # 开始下降
                 self.flag = True
 
-        if times == 6:
+        if times == 8:
             times = 0
         windowSurface.blit(self.image_list[times],self.rect)
         times += 1
