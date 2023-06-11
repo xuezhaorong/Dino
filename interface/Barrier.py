@@ -25,3 +25,4 @@ class BarrierInterface(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.x -= self.speed
+

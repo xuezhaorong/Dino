@@ -5,6 +5,7 @@ from interface.Dinosaur import Dinosaur
 from interface.Score import ScoreInterface
 from interface.Restart import RestartInterface
 from interface.Barrier import BarrierInterface
+from interface.Barrierbird import BarrierbirdInterface
 import random
 # 全局初始化
 pygame.init()
@@ -45,8 +46,14 @@ for i in range(1, 7):
     barrier_image = pygame.image.load(
         f"./material/picture/Barrier{i}.png").convert_alpha()
     barrier_list.append(barrier_image)
+barrierbird_list = []
+for i in range(1,29):
+    barrierbird_image = pygame.image.load(
+        f"./material/picture/Bird{i}.png").convert_alpha()
+    barrierbird_list.append(barrierbird_image)
 # 创建障碍Group
-seGroup = pygame.sprite.Group()
+seGroup1 = pygame.sprite.Group()
+seGroup2 = pygame.sprite.Group()
 # 背景音乐
 pygame.mixer.music.load("./material/sound/背景音效2.mp3")
 pygame.mixer.music.play(-1)
@@ -87,34 +94,46 @@ fail = False
 
 
 def restart():
-    global score, time, seGroup, score_list
+    global score, time, seGroup1, score_list
     score = 0
     time = currentTime
     # 开始音乐播放
     pygame.mixer.music.unpause()
     # 清空seGroup
-    for se in seGroup:
-        seGroup.remove(se)
+    for se in seGroup1:
+        seGroup1.remove(se)
+    for se in seGroup2:
+            seGroup2.remove(se)
     # 清空socre_list
     score_list.clear()
 
 
 def cleanSprit():
-    global seGroup, score_list
-    for se in seGroup:
+    global seGroup1, score_list
+    for se in seGroup1:
         if se.rect.x < 0:
             score_list.append(se.score)
-            seGroup.remove(se)
+            seGroup1.remove(se)
+    global seGroup2
+    for se in seGroup2:
+        if se.rect.x < 0:
+            score_list.append(se.score)
+            seGroup2.remove(se)
+
+
 
 # 创建障碍
 
 
 def createBarrier():
-    global seGroup, barrier_list
+    global seGroup1, barrier_list
     n = random.randint(0, 5)
-    barrier = BarrierInterface(barrier_list[n], n+1)
-    seGroup.add(barrier)
-
+    barrier1 = BarrierInterface(barrier_list[n], n+1)
+    seGroup1.add(barrier1)
+def createBarrierBird():
+    global seGroup2, image_list
+    barrier2 = BarrierbirdInterface(barrierbird_list,2)
+    seGroup2.add(barrier2)
 # 计算得分
 
 
@@ -126,8 +145,6 @@ def calScore():
 
 
 if __name__ == "__main__":
-
-    RESET_TICK_EVENT = pygame.USEREVENT + 1
 
     # 开启消息循环
     while True:
@@ -176,16 +193,28 @@ if __name__ == "__main__":
                 time += 1000
                 if time % 1000 == 0:
                     createBarrier()
+                    createBarrierBird()
 
             # 绘制得分
             scoreInterface.draw(windowSurface, f"Score: {score}")
 
             # 绘制障碍
-            seGroup.update()
-            seGroup.draw(windowSurface)
+            seGroup1.update()
+            seGroup1.draw(windowSurface)
+            seGroup2.update()
+            for se in seGroup2:
+                se.draw(windowSurface)
+
+
 
             # 碰撞检验
-            if pygame.sprite.spritecollide(dinosaur, seGroup, False, pygame.sprite.collide_mask):
+            if pygame.sprite.spritecollide(dinosaur, seGroup1, False, pygame.sprite.collide_mask):
+                fail = True
+                # 暂停音乐
+                pygame.mixer.music.pause()
+                # 触发音效
+                failSound.play()
+            if pygame.sprite.spritecollide(dinosaur, seGroup2, False, pygame.sprite.collide_mask):
                 fail = True
                 # 暂停音乐
                 pygame.mixer.music.pause()
